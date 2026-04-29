@@ -1,37 +1,22 @@
 # Federal Tax Rate Explorer
 
-React/Vite app for visualizing 2025 federal ordinary income and long-term capital gains tax rates.
+Vite + React app prepared for GitHub Pages.
 
 ## Local setup
 
 ```powershell
 cd C:\Users\timmy\Projects\github\taxrateexplorer
+Remove-Item package-lock.json -Force -ErrorAction SilentlyContinue
+Remove-Item node_modules -Recurse -Force -ErrorAction SilentlyContinue
 npm install
+npm run build
 npm run dev
 ```
 
-Then open the local Vite URL, usually:
+## Deploy
 
-```text
-http://localhost:5173
-```
+Push to `main`. GitHub Actions builds `dist` and deploys it to GitHub Pages.
 
-## Production test
+In GitHub, confirm:
 
-```powershell
-npm run build
-npm run preview
-```
-
-## Deploy to GitHub Pages
-
-1. Create a GitHub repo named `taxrateexplorer`.
-2. Push this folder to `main`.
-3. In GitHub, go to **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-4. Push to `main` and wait for the workflow to finish.
-
-Expected URL:
-
-```text
-https://YOUR-GITHUB-USERNAME.github.io/taxrateexplorer/
-```
+`Settings → Pages → Build and deployment → Source → GitHub Actions`
