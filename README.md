@@ -18,35 +18,34 @@ Uses the 2025 federal tax brackets per IRS Revenue Procedure 2024-40, with stand
 
 **Federal only** — does not include FICA, state tax, NIIT, AMT, credits, itemized deductions, or other planning variables.
 
-## Quick deploy (no build needed)
+## Deploy to GitHub Pages (recommended)
 
-A pre-built `dist/` folder is included. The fastest way to deploy:
+The included GitHub Actions workflow builds and deploys automatically:
 
-1. Create a new GitHub repo and push this folder to `main`
-2. In repo Settings → Pages → Build and deployment, set Source to "Deploy from a branch", branch `main`, folder `/dist`
-3. Site goes live at `https://<your-username>.github.io/<repo-name>/`
+1. Push this folder to a GitHub repo (the included `package-lock.json` lets CI run `npm ci` reproducibly)
+2. In repo **Settings → Pages → Build and deployment**, set Source to **"GitHub Actions"**
+3. Push any change — the workflow runs and deploys to `https://<your-username>.github.io/<repo-name>/`
+
+If your repo is already pushed, just push another commit to trigger the workflow (or run it manually from the **Actions** tab → **Deploy to GitHub Pages** → **Run workflow**).
 
 ## Local development
 
 ```bash
 npm install
-npm run build      # produces dist/app.js + dist/index.html
+npm run build              # produces dist/app.js + dist/index.html
 ```
 
-Then open `dist/index.html` directly in a browser, or serve the folder:
+Then open `dist/index.html` directly in a browser, or serve it:
 
 ```bash
 python3 -m http.server 8000 --directory dist
+# visit http://localhost:8000
 ```
 
-## Auto-deploy via GitHub Actions
+## Editing
 
-The included workflow at `.github/workflows/deploy.yml` will build and deploy automatically on each push to `main`. To use it:
-
-1. Push the repo to GitHub
-2. In repo Settings → Pages → Build and deployment, set Source to "GitHub Actions"
-3. Push any change — it builds and deploys to `https://<your-username>.github.io/<repo-name>/`
+The visual component lives in `tax_visualizer.jsx`. After edits, rebuild with `npm run build`. CI will rebuild automatically on push to `main`.
 
 ## Tech
 
-Single-file React app, bundled to one JS file via esbuild. No framework, no router. ~183 KB minified.
+Single-file React 18 app, bundled to one self-contained IIFE via esbuild. ~183 KB minified. No CDN dependencies at runtime (Inter font loaded from Google Fonts). No router, no framework.
