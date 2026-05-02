@@ -1,6 +1,5 @@
-node_modules
-dist
+node_modules/
+dist/
+app.js
 .DS_Store
-.env
-.env.local
-.vscode
+*.log

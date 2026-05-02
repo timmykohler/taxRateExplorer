@@ -1,18 +1,17 @@
 {
-  "name": "taxrateexplorer",
-  "private": true,
+  "name": "tax-rate-explorer",
   "version": "1.0.0",
-  "type": "module",
+  "private": true,
+  "description": "Interactive 2025 US federal tax bracket visualizer",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "rm -rf dist && mkdir -p dist && esbuild main.jsx --bundle --minify --loader:.jsx=jsx --define:process.env.NODE_ENV='\"production\"' --outfile=dist/app.js --format=iife --target=es2020 && cp index.html dist/index.html",
+    "dev": "esbuild main.jsx --bundle --loader:.jsx=jsx --define:process.env.NODE_ENV='\"development\"' --outfile=app.js --format=iife --target=es2020 --watch=forever --servedir=."
   },
   "dependencies": {
-    "@vitejs/plugin-react": "4.3.4",
-    "vite": "5.4.11",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "esbuild": "^0.21.0"
+  }
 }
